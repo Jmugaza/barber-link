@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import Barber
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
@@ -14,3 +15,10 @@ def logout_view(request):
 
 def about(request):
   return render(request, 'about.html')
+
+def barbers_index(request):
+   barbers = Barber.objects.all()
+   return render(request, 'barbers/index.html', {
+      'barbers': barbers 
+   })
+   
