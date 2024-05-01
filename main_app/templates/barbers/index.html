@@ -14,6 +14,7 @@
             <a href="/barbers/{{barber.id}}">Details</a>
             <a href="{% url 'reviews_create' barber_id=barber.id %}">Add Review</a>
             <a href="{% url 'barbers_update' barber.id %}">Edit</a>
+            <a href="{% url 'barbers_delete' barber.id %}">Delete</a>
         </div>
     </div>
 

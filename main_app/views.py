@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Barber, Review
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
@@ -44,6 +44,10 @@ class BarberCreate(CreateView):
 class BarberUpdate(UpdateView):
    model = Barber
    fields = ('phone', 'bio')
+
+class BarberDelete(DeleteView):
+   model = Barber
+   success_url = '/barbers'
 
 class ReviewList(ListView):
   model = Review

@@ -12,4 +12,5 @@ urlpatterns = [
     path('barbers/<int:barber_id>/reviews/create/', views.ReviewCreate.as_view(), name="reviews_create"),
     #path('reviews/create/', views.ReviewCreate.as_view(), name="reviews_create"),
     path('barbers/<int:pk>/update/', views.BarberUpdate.as_view(), name='barbers_update'),
+    path('barbers/<int:pk>/delete/', views.BarberDelete.as_view(), name="barbers_delete"),
 ]
