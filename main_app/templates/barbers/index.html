@@ -9,7 +9,12 @@
             <p>Phone: {{ barber.phone }}</p>
             <p>Bio: {{ barber.bio }}</p>
         </div>
-        <a href="/barbers/{{barber.id}}" class="btn  green" >Details</a>
+        
+        <div class="card-action purple">
+            <a href="/barbers/{{barber.id}}">Details</a>
+            <a href="{% url 'reviews_create' barber_id=barber.id %}">Add Review</a>
+            <a href="{% url 'barbers_update' barber.id %}">Edit</a>
+        </div>
     </div>
 
 {% endfor %}

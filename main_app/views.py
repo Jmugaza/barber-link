@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Barber, Review
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
@@ -39,7 +39,11 @@ def barbers_detail(request, barber_id):
 
 class BarberCreate(CreateView):
     model = Barber
-    fields = ['name', 'phone', 'bio', ]
+    fields = ('name', 'phone', 'bio', )
+
+class BarberUpdate(UpdateView):
+   model = Barber
+   fields = ('phone', 'bio')
 
 class ReviewList(ListView):
   model = Review
@@ -57,3 +61,4 @@ class ReviewCreate(CreateView):
    def get_success_url(self):
         barber_id = self.kwargs['barber_id']
         return reverse_lazy('detail', kwargs={'barber_id': barber_id})
+
