@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Review List</h1>
+
+
+
+{% for review in review_list %}
+    
+    <h1>{{ barber.name }}</h1>
+    <p>Phone: {{ barber.phone }}</p>
+    <p>Bio: {{ barber.bio }}</p>
+  
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ review.username }}</span>
+            <p>Review: {{ review.comment }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

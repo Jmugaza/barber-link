@@ -3,13 +3,13 @@
 
 <h1>Barbers List</h1>
 {% for barber in barbers %}
-    <div class="">
-        <div class="">
+    <div class="card">
+        <div class="card-content">
             <span class="card-title">{{ barber.name }}</span>
             <p>Phone: {{ barber.phone }}</p>
             <p>Bio: {{ barber.bio }}</p>
-            
         </div>
+        <a href="/barbers/{{barber.id}}" class="btn  green" >Details</a>
     </div>
 
 {% endfor %}

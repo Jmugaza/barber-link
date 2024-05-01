@@ -9,20 +9,22 @@
     <title>BarbeLink</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-    <header class="navbar-fixed ">
+    <header>
+        <div>
+            <h1>BarbeLink</h1>
+        </div>
         <nav>
-            <div class="purple nav-wrapper">
+            <div>
                 <ul>
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;BarbeLink</a></li>
+                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp; BL </a></li>
                 </ul>
                 <ul class="right">
                   <li><a href="{% url 'about' %}">About</a></li>
+                  <li><a href="{% url 'reviews_index' %}">View All Reviews</a></li>
+                  <li><a href="{% url 'barbers_create' %}">Add a Barber</a></li>
                   <li><a href="{% url 'index' %}">View All My Barbers</a></li>
-                  
-
                 </ul>
             </div>
         </nav>

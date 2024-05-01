@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<h1>{{ barber.name }}</h1>
+<p>Phone: {{ barber.phone }}</p>
+<p>Bio: {{ barber.bio }}</p>
+
+<h2>Reviews</h2>
+
+{% if reviews %}
+    <ul>
+    {% for review in reviews %}
+        <li>{{ review.username }} - {{review.comment }}</li>
+    {% endfor %}
+    </ul>
+   
+{% else %}
+    <p>No reviews available.</p>
+{% endif %}
+<a href="{% url 'reviews_create' barber_id=barber.id %}">Add Review</a>
+
+
+{% endblock %}
