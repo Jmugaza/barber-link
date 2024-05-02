@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Barber(models.Model):
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     phone = models.IntegerField()
     bio = models.TextField(max_length=250)

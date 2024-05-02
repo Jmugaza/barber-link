@@ -8,6 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -39,12 +40,15 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def barbers_index(request):
-   barbers = Barber.objects.all()
+   barbers = Barber.objects.filter(user=request.user)
    return render(request, 'barbers/index.html', {
-      'barbers': barbers,
+      'barbers': barbers
    })
 
+
+@login_required
 def barbers_detail(request, barber_id):
     barber = Barber.objects.get(id=barber_id)
     reviews = barber.reviews.all()
@@ -53,36 +57,30 @@ def barbers_detail(request, barber_id):
         'barber': barber,
         'reviews': reviews
     })
-class BarberCreate(CreateView):
+class BarberCreate(LoginRequiredMixin, CreateView):
     model = Barber
     fields = ('name', 'phone', 'bio', )
 
-class BarberUpdate(UpdateView):
+    def form_valid(self, form):
+       form.instance.user = self.request.user
+       return super().form_valid(form)
+
+class BarberUpdate(LoginRequiredMixin, UpdateView):
    model = Barber
    fields = ('phone', 'bio')
 
-class BarberDelete(DeleteView):
+class BarberDelete(LoginRequiredMixin, DeleteView):
    model = Barber
    success_url = '/barbers'
 
-class ReviewList(ListView):
+class ReviewList(LoginRequiredMixin, ListView):
   model = Review
    
-class ReviewCreate(CreateView):
+class ReviewCreate(LoginRequiredMixin, CreateView):
    model = Review
    fields = ('comment',)
 
-   
-   def form_valid(self, form):
-    # Set the user instance for the review before saving
-    form.instance.user = self.request.user
-    # Set the barber instance for the review before saving
-    #barber = Barber.objects.get(id=self.kwargs['barber_id'])
-    #form.instance.barber_id = barber
-    return super().form_valid(form)
-   
-
-class ReviewUpdate(UpdateView):
+class ReviewUpdate(LoginRequiredMixin, UpdateView):
     model = Review
     fields = ('comment',)
 
