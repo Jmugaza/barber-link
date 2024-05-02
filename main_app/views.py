@@ -66,3 +66,7 @@ class ReviewCreate(CreateView):
         barber_id = self.kwargs['barber_id']
         return reverse_lazy('detail', kwargs={'barber_id': barber_id})
 
+
+class ReviewUpdate(UpdateView):
+    model = Review
+    fields = ('comment',)

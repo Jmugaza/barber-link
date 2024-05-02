@@ -3,20 +3,34 @@
 
 <h1>Review List</h1>
 
-
-
 {% for review in review_list %}
-    
-    <h1>{{ barber.name }}</h1>
-    <p>Phone: {{ barber.phone }}</p>
-    <p>Bio: {{ barber.bio }}</p>
-  
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ review.username }}</span>
+    <div>
+        <h1>{{ review.barber.name }}</h1>
+        <p>Phone: {{ review.barber.phone }}</p>
+        <p>Bio: {{ review.barber.bio }}</p>
+
+        <div>
+            <span>{{ review.username }}</span>
             <p>Review: {{ review.comment }}</p>
         </div>
     </div>
 {% endfor %}
+
+
+
+{% comment %} {% for review in review_list %}
+    <div>
+        <div>
+            <span>{{ review.username }}</span>
+            <p>Review: {{ review.comment }}</p>
+        </div>
+    </div>
+
+    <h1>{{ barber.name }}</h1>
+    <p>Phone: {{ barber.phone }}</p>
+    <p>Bio: {{ barber.bio }}</p>
+  
+    
+{% endfor %} {% endcomment %}
 
 {% endblock %}

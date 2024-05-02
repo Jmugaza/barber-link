@@ -11,8 +11,12 @@
     <ul>
     {% for review in reviews %}
         <li>{{ review.username }} - {{review.comment }}</li>
+        <div >
+            <a href="{% url 'reviews_update' review.id %}">Edit</a>
+        </div>
     {% endfor %}
     </ul>
+    
    
 {% else %}
     <p>No reviews available.</p>
