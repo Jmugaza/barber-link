@@ -4,7 +4,9 @@ from .models import Barber, Review
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
+from django.contrib.auth import login 
 from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -13,6 +15,22 @@ from django.contrib.auth.decorators import login_required
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+         user = form.save()
+         login(request, user)
+         return redirect('index')
+        else:
+         error_message = 'Invalid Sign Up - try again'
+    form = UserCreationForm()   
+    context = {'form': form, 'error_message': error_message} 
+    return render(request, 'registration/signup.html', context) 
+
+
 
 def home(request):
     return render(request, 'home.html')
@@ -52,36 +70,17 @@ class ReviewList(ListView):
    
 class ReviewCreate(CreateView):
    model = Review
-   fields = ('username', 'comment')
+   fields = ('comment',)
 
-   def form_valid(self, form):
-    # Set the barber instance for the review before saving
-    barber = Barber.objects.get(id=self.kwargs['barber_id'])
-    form.instance.barber_id = barber
-    return super().form_valid(form)
    
    def form_valid(self, form):
+    # Set the user instance for the review before saving
+    form.instance.user = self.request.user
     # Set the barber instance for the review before saving
-    barber = Barber.objects.get(id=self.kwargs['barber_id'])
-    form.instance.barber_id = barber
+    #barber = Barber.objects.get(id=self.kwargs['barber_id'])
+    #form.instance.barber_id = barber
     return super().form_valid(form)
    
-   
-
-#    def form_valid(self, form):
-#        # Set the barber instance for the review before saving
-#        barber = Barber.objects.get(id=self.kwargs['barber_id'])
-#        form.instance.barber_id = barber
-#        if form.is_valid():
-#            return reverse_lazy('detail', kwargs={'barber_id': barber.id})
-        
-        
-    
-
-#    def get_success_url(self):
-#         barber_id = self.kwargs['barber_id']
-#         return reverse_lazy('detail', kwargs={'barber_id': barber_id})
-
 
 class ReviewUpdate(UpdateView):
     model = Review

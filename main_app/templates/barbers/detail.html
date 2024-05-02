@@ -13,7 +13,7 @@
 {% if reviews %}
     <ul>
     {% for review in reviews %}
-        <li>{{ review.username }} - {{review.comment }}</li>
+        <li>{{ review.user }} - {{review.comment }}</li>
         <div>
             <a href="{% url 'reviews_update' barber_id=barber.id pk=review.id %}">Edit</a>
         </div>  
