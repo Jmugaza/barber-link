@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from .models import Barber, Review
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
@@ -28,15 +29,12 @@ def barbers_index(request):
 
 def barbers_detail(request, barber_id):
     barber = Barber.objects.get(id=barber_id)
-    # reviews = barber.reviews.all()
-    id_list = barber.reviews.all().values_list('id')
-    reviews_that_review_doesnt_have = Review.objects.exclude(id__in=id_list)
+    reviews = barber.reviews.all()
     
     return render(request, 'barbers/detail.html', {
         'barber': barber,
-        'reviews': reviews_that_review_doesnt_have
+        'reviews': reviews
     })
-
 class BarberCreate(CreateView):
     model = Barber
     fields = ('name', 'phone', 'bio', )
@@ -54,19 +52,40 @@ class ReviewList(ListView):
    
 class ReviewCreate(CreateView):
    model = Review
-   fields = '__all__'
+   fields = ('username', 'comment')
+
+   def form_valid(self, form):
+    # Set the barber instance for the review before saving
+    barber = Barber.objects.get(id=self.kwargs['barber_id'])
+    form.instance.barber_id = barber
+    return super().form_valid(form)
+   
+   def form_valid(self, form):
+    # Set the barber instance for the review before saving
+    barber = Barber.objects.get(id=self.kwargs['barber_id'])
+    form.instance.barber_id = barber
+    return super().form_valid(form)
+   
    
 
 #    def form_valid(self, form):
-#         # Set the barber instance for the review before saving
-#         form.instance.barber_id = self.kwargs['barber_id']
-#         return super().form_valid(form)
+#        # Set the barber instance for the review before saving
+#        barber = Barber.objects.get(id=self.kwargs['barber_id'])
+#        form.instance.barber_id = barber
+#        if form.is_valid():
+#            return reverse_lazy('detail', kwargs={'barber_id': barber.id})
+        
+        
+    
 
-   def get_success_url(self):
-        barber_id = self.kwargs['barber_id']
-        return reverse_lazy('detail', kwargs={'barber_id': barber_id})
+#    def get_success_url(self):
+#         barber_id = self.kwargs['barber_id']
+#         return reverse_lazy('detail', kwargs={'barber_id': barber_id})
 
 
 class ReviewUpdate(UpdateView):
     model = Review
     fields = ('comment',)
+
+
+    

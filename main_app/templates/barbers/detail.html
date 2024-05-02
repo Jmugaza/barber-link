@@ -1,7 +1,10 @@
 {% extends 'base.html' %} 
 {% block content %}
 
-<h1>{{ barber.name }}</h1>
+
+<h1>Barber Detail</h1>
+
+<h2>{{ barber.name }}</h2>
 <p>Phone: {{ barber.phone }}</p>
 <p>Bio: {{ barber.bio }}</p>
 
@@ -11,16 +14,15 @@
     <ul>
     {% for review in reviews %}
         <li>{{ review.username }} - {{review.comment }}</li>
-        <div >
-            <a href="{% url 'reviews_update' review.id %}">Edit</a>
-        </div>
+        <div>
+            <a href="{% url 'reviews_update' barber_id=barber.id pk=review.id %}">Edit</a>
+        </div>  
     {% endfor %}
     </ul>
-    
-   
 {% else %}
     <p>No reviews available.</p>
 {% endif %}
+<a href="{% url 'reviews_create' barber_id=barber.id %}">Add Review</a>
 
 
 {% endblock %}

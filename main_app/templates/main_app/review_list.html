@@ -3,34 +3,18 @@
 
 <h1>Review List</h1>
 
+
 {% for review in review_list %}
     <div>
-        <h1>{{ review.barber.name }}</h1>
-        <p>Phone: {{ review.barber.phone }}</p>
-        <p>Bio: {{ review.barber.bio }}</p>
-
+        <h2>{{ review.barber_id.name }}</h2>
+        <p>Phone: {{ review.barber_id.phone }}</p>
+        <p>Bio: {{ review.barber_id.bio }}</p>
         <div>
-            <span>{{ review.username }}</span>
+            <span>username:{{ review.username }}</span>
             <p>Review: {{ review.comment }}</p>
         </div>
     </div>
 {% endfor %}
 
-
-
-{% comment %} {% for review in review_list %}
-    <div>
-        <div>
-            <span>{{ review.username }}</span>
-            <p>Review: {{ review.comment }}</p>
-        </div>
-    </div>
-
-    <h1>{{ barber.name }}</h1>
-    <p>Phone: {{ barber.phone }}</p>
-    <p>Bio: {{ barber.bio }}</p>
-  
-    
-{% endfor %} {% endcomment %}
 
 {% endblock %}
