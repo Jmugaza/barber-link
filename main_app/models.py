@@ -22,12 +22,11 @@ class Barber(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(max_length=250)
-    #barber_id = models.ForeignKey(Barber, on_delete=models.CASCADE, related_name='reviews')
+    barber_id = models.ForeignKey(Barber, on_delete=models.CASCADE, related_name='reviews')
     
 
     def __str__(self):
         return self.user
     
     def get_absolute_url(self):
-        #return reverse('reviews_index', kwargs={'pk': self.id})
         return reverse('reviews_index') + f'#{self.pk}'
