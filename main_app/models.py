@@ -30,3 +30,11 @@ class Review(models.Model):
     
     def get_absolute_url(self):
         return reverse('reviews_index') + f'#{self.pk}'
+    
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    barber = models.ForeignKey(Barber, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Photo for barber_id: {self.barber_id} @{self.url}'
