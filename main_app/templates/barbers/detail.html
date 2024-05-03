@@ -1,29 +1,49 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
+<div class="container">
+    <h3 class="teal-text">Barber Detail</h3>
+    <div class="row">
+        <div class="col s12">
+            <div class="card horizontal">
+                <div class="card-image">
+                    {% if barber.photo_set.exists %}
+                        {% for photo in barber.photo_set.all %}
+                            <img src="{{ photo.url }}" alt="{{ barber.name }}">
+                        {% endfor %}
+                    {% else %}
+                        <span class="card-title">No Photo Available</span>
+                    {% endif %}
+                </div>
+                <div class="card-stacked" style="margin-top: 10%;">
+                    <div class="card-content">
+                        <span class="card-title"><strong>{{ barber.name }}</strong></span>
+                        <p><strong>Phone:</strong> {{ barber.phone }}</p>
+                        <p><strong>Bio:</strong> {{ barber.bio }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-<h1>Barber Detail</h1>
-
-<h2>{{ barber.name }}</h2>
-<p>Phone: {{ barber.phone }}</p>
-<p>Bio: {{ barber.bio }}</p>
-
-<h2>Reviews</h2>
-
-{% if reviews %}
-    <ul>
-    {% for review in reviews %}
-        <li>{{ review.user }} - {{review.comment }}</li>
-        <div>
-            <a href="{% url 'reviews_update' barber_id=barber.id pk=review.id %}">Edit</a>
-        </div>  
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No reviews available.</p>
-{% endif %}
-
-<a href="{% url 'reviews_create' barber_id=barber.id %}">Add Review</a>
-
-
+    <h4 class="teal-text">Reviews</h4>
+    {% if reviews %}
+        <ul class="collection">
+            {% for review in reviews %}
+                <li class="collection-item">{{ review.user }} - {{ review.comment }}
+                    <div class="right-align">
+                        <a href="{% url 'reviews_update' barber_id=barber.id pk=review.id %}" class="btn-small teal">Edit</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews available.</p>
+    {% endif %}
+    
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'reviews_create' barber_id=barber.id %}" class="waves-effect waves-light btn teal">Add Review</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

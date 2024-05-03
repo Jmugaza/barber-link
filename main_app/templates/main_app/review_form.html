@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
   {% if object %}
-    <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+    <h1>Edit <span class="teal-text center-align">{{barber.id}}'s Info </span></h1>
   {% else %}
-    <h1>Add Review</h1>
+  <h1>Add Review</h1>
   {% endif %}
-  <!-- Leaving the action empty makes the form post to the same url used to display it -->
+  <!-- Leaving the action empty makes the form post to the same URL used to display it -->
   <form  method="post">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
@@ -14,6 +15,9 @@
       <!-- Render the inputs inside of <tr>s & <td>s -->
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit!" class="btn">
+
+    <input type="submit" value="Submit!" class="btn cyan">
   </form>
+</div>
 {% endblock %}
+

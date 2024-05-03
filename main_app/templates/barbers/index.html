@@ -1,41 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Barbers List</h1>
+
+<h1 class="teal-text center-align">Barbers List</h1>
 {% for barber in barbers %}
-    <div>
-        <div>
-            <span>{{ barber.name }}</span>
-            <p>Phone: {{ barber.phone }}</p>
-            <p>Bio: {{ barber.bio }}</p>
-        </div>
-        
-        <div>
-            <a href="/barbers/{{barber.id}}">Details</a>
-            <a href="{% url 'barbers_update' barber.id %}">Edit</a>
-            <a href="{% url 'barbers_delete' barber.id %}">Delete</a>
+<div class="row">
+    <div class="col s6 m8 offset-m2">
+        <div class="card">
+            <div class="card-image">
+                {% for photo in barber.photo_set.all %}
+                <img src="{{ photo.url }}" alt="{{ barber.name }}" class="responsive-img center">
+                {% empty %}
+                <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+                {% endfor %}
+            </div>
+            <div class="card-content">
+                <span class="card-title"><strong>{{ barber.name }}</strong></span>
+                <p><strong>Phone:</strong> {{ barber.phone }}</p>
+                <p><strong>Bio:</strong> {{ barber.bio }}</p>
+            </div>
+            <div class="card-action purple center-align" sstyle="gap: 20px;">
+                <a href="/barbers/{{barber.id}}" class="btn-small teal">Details</a>
+                <a href="{% url 'barbers_update' barber.id %}" class="btn-small teal">Edit</a>
+                <a href="{% url 'barbers_delete' barber.id %}" class="btn-small teal">Delete</a>
+            </div>
         </div>
     </div>
-
-    <div>
-        {% for photo in barber.photo_set.all %}
-            <img src="{{ photo.url }}" alt="{{ barber.name }}" >
-        {% empty %}
-            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-        {% endfor %}
-        <form action="{% url 'add_photo' barber_id=barber.id %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="photo-file">
-            <br>
-            <br>
-            <input type="submit" value="Upload Photo" class="btn blue">
-        </form>
-    </div>
-
-
+</div>
 {% endfor %}
-
-
-
 
 {% endblock %}

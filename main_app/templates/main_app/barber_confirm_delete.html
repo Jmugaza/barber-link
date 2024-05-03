@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Barber</h1>
+<div class="container">
+  <h1 class="teal-text">Delete Barber</h1>
 
-  <h4>Are you sure you want to delete <span>{{ object.name }}</span>?</h4>
-
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn">
-    <a href="{% url 'index' %}">Cancel</a>
-  </form>
+  <div class="card">
+    <div class="card-content">
+      <h4>Are you sure you want to delete <span>{{ object.name }}</span>?</h4>
+    </div>
+    <div class="card-action">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn red">Yes - Delete!</button>
+        <a href="{% url 'index' %}" class="btn grey">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

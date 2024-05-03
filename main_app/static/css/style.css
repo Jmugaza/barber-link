@@ -2,13 +2,85 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 400;
 }
 
 main {
     flex: 1 0 auto;
+    text-align: center;
+    position: relative; /* Add relative positioning */
+    z-index: 2;  
 }
+
 
 footer.page-footer {
     padding-top: 0;
     text-align: right;
+    background-color: #512da8;
+}
+
+.ubuntu-mono-regular {
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.creepster-regular {
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+
+header {
+    background-color: #673ab7;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    height: 100px;
+}
+.brand-logo{
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: "Creepster", system-ui;
+    padding: 16px;
+}
+nav {
+    margin-top: 8px; /* Adjust this value as needed */
+    font-weight: 700;
+    height: 81px;
+    background-color: rgb(9, 115, 101);
+    
+}
+nav ul {
+    list-style-type: none;
+    font-weight: bold;
+    
+    
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+a:hover {
+    background-color: #512da8;
+    border-radius: 5px;
+}
+.container {
+    margin: 50px auto;
+    padding: 0 20px;
+    max-width: 960px;
 }

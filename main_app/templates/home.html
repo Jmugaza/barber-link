@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+
 {% block content %}
-
-<h1 >Home</h1>
-<div>
-  {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">Log Out</a>
-  {% else %}
-    <a href="{% url 'login' %}">Log In</a>
-  {% endif %}
+<div class="container center">
+    <p class="flow-text teal-text">Welcome to our website!</p>
+    <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="waves-effect waves-light btn teal">Log Out</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="waves-effect waves-light btn teal center">Log In</a>
+        {% endif %}
+    </div>
 </div>
-
 {% endblock %}

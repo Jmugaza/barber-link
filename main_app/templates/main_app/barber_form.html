@@ -1,17 +1,19 @@
 {% extends "base.html" %}
-{% block  content %}
+{% block content %}
 
-
-<h1>Create Barber</h1>
-
-
-<form method="POST">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-        {{form.as_table}}
-    </table>
-    <input type="submit" value="Submit!" class="btn blue">
-</form>
+<div class="container">
+    {% if object %}
+        <h1  class="teal-text center-align"> Edit {{ object.name }}'s Info</h1>
+    {% else %}
+        <h1>Add The Best Barber You know</h1>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit!" class="btn blue">
+    </form>
+</div>
 
 {% endblock %}

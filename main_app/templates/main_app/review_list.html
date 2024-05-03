@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Review List</h1>
+<div class="container">
+    <h1 class="teal-text center-align">Barbers Review List</h1>
 
-
-{% for review in review_list %}
-    <div>
-        <h2>{{ review.barber_id.name }}</h2>
-        <p>Phone: {{ review.barber_id.phone }}</p>
-        <p>Bio: {{ review.barber_id.bio }}</p>
-        <div>
-            <span>username:{{ review.user }}</span>
-            <p>Review: {{ review.comment }}</p>
+    {% for review in review_list %}
+    <div class="card">
+        <div class="card-content">
+            <h2>{{ review.barber_id.name }}</h2>
+            <p><strong>Phone:</strong> {{ review.barber_id.phone }}</p>
+            <p><strong>Bio:</strong> {{ review.barber_id.bio }}</p>
+            <div>
+                <p><strong>User:</strong> {{ review.user }}</p> 
+                <p><strong>Review:</strong> {{ review.comment }}</p>
+            </div>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
 
 
 {% endblock %}
