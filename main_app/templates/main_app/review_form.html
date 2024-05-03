@@ -3,9 +3,9 @@
 {% block content %}
 <div class="container">
   {% if object %}
-    <h1>Edit <span class="teal-text center-align">{{barber.id}}'s Info </span></h1>
+    <h2>Edit <span class="teal-text center-align">{{object.name}} </span></h2>
   {% else %}
-  <h1>Add Review</h1>
+  <h2>How did you like your last hair cut? Add a Review </h2>
   {% endif %}
   <!-- Leaving the action empty makes the form post to the same URL used to display it -->
   <form  method="post">

@@ -29,9 +29,10 @@
     {% if reviews %}
         <ul class="collection">
             {% for review in reviews %}
-                <li class="collection-item">{{ review.user }} - {{ review.comment }}
-                    <div class="right-align">
-                        <a href="{% url 'reviews_update' barber_id=barber.id pk=review.id %}" class="btn-small teal">Edit</a>
+                <li class="collection-item"><span class="purple-text">{{ review.user }}</span> - {{ review.comment }}
+                    <div class="center-align">
+                        <a href="{% url 'reviews_update' barber_id=barber.id pk=review.id %}" class="btn-small teal small">Edit</a>
+                        <a href="{% url 'reviews_delete' pk=review.id %}" class="btn-small teal">Delete</a>
                     </div>
                 </li>
             {% endfor %}

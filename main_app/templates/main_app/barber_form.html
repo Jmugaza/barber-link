@@ -3,9 +3,9 @@
 
 <div class="container">
     {% if object %}
-        <h1  class="teal-text center-align"> Edit {{ object.name }}'s Info</h1>
+        <h2  class="teal-text center-align"> Edit {{ object.name }}'s Info</h2>
     {% else %}
-        <h1>Add The Best Barber You know</h1>
+        <h2>Add The Best Barber You know</h2>
     {% endif %}
     <form method="POST">
         {% csrf_token %}

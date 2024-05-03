@@ -1,15 +1,20 @@
 # BarberLink
 
+## Screenshot
+
+<img src="./main_app/static/images/barberlink.png" alt="Sports Players Tracker" style="width: 80%; border: 2px solid #ccc; border-radius: 5px; display: block; margin: 20px auto;" />
+
 
 ## Description
 
-Welcome to BarberLink! Our platform is designed to simplify your grooming experience by connecting you with premier barbershops in your area. With BarberLink, you can easily find nearby barbershops, book appointments hassle-free, and share your experiences through reviews.
+Welcome to BarberLink! Our platform is designed to simplify your grooming experience by connecting you with premier barbers within your community. With BarberLink, you can easily find nearby barbers, book appointments through phone call, and share your experiences through reviews.
  
 ## Technology Used
 
 - **Python** 
 - **Django**
 - **Postgresql**
+- **Amazon S3**
 - **HTML**
 - **CSS** 
 - **Materialize**
@@ -17,6 +22,8 @@ Welcome to BarberLink! Our platform is designed to simplify your grooming experi
 ## Trello Board
 
 You can check out the project planing [here](https://trello.com/invite/b/fpUD4lfC/ATTI0c516530cdcd70e2a6574e2f31349c57F68B7271/project-3).
+
+
 
 
 

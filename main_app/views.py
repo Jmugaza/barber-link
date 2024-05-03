@@ -121,5 +121,9 @@ class ReviewUpdate(LoginRequiredMixin, UpdateView):
     model = Review
     fields = ('comment',)
 
+class ReviewDelete(DeleteView):
+   model = Review
+   success_url = reverse_lazy('reviews_index')
+
 
     
