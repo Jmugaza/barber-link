@@ -7,7 +7,7 @@
 
 ## Description
 
-Welcome to BarberLink! Our platform is designed to simplify your grooming experience by connecting you with premier barbers within your community. With BarberLink, you can easily find nearby barbers, book appointments through phone call, and share your experiences through reviews.
+Welcome to BarberLink! Platform is designed to simplify your grooming experience by connecting you with premier barbers within your community. With BarberLink, you can easily find nearby barbers, book appointments through phone call, and share your experiences through reviews.
  
 ## Technology Used
 
