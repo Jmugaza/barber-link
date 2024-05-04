@@ -101,6 +101,13 @@ class BarberDelete(LoginRequiredMixin, DeleteView):
 
 class ReviewList(LoginRequiredMixin, ListView):
   model = Review
+
+  def get_queryset(self):
+        # Get the queryset of all reviews
+        queryset = super().get_queryset()
+        # Filter the reviews to include only those created by the current user
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
    
 class ReviewCreate(LoginRequiredMixin, CreateView):
     model = Review
