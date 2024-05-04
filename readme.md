@@ -23,6 +23,11 @@ Welcome to BarberLink! Platform is designed to simplify your grooming experience
 
 You can check out the project planing [here](https://trello.com/invite/b/fpUD4lfC/ATTI0c516530cdcd70e2a6574e2f31349c57F68B7271/project-3).
 
+## Live Link
+
+You can check out the live version of the application [here](https://barberlink-d6788205aff5.herokuapp.com/).
+
+
 
 
 
